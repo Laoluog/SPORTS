@@ -1,0 +1,182 @@
+import random
+
+# These are the teams the user can choose from that will be accepted
+poss_teams = ['Duke', 'Michigan', 'Baylor', 'Illinois', 'Tennessee', 'Kansas', 'Gonzaga', 'Auburn']
+
+# These are the teams the user can face
+team_to_choose = ['Michigan', 'Baylor', 'Illinois', 'Tennessee', 'Kansas', 'Gonzaga', 'Auburn']
+
+# These are the print commands in the start
+print(" 2 seed Duke, 1 seed Baylor, 2 seed Auburn, 1 seed Gonzaga, 1 seed Kansas, 11 seed Michigan, 4 seed Illinois, 3 seed Tennessee")
+print()
+
+# Function to print rounds left
+def rounds_left():
+    print("You have 5 Rounds left")
+
+# Function to print losing message based on round
+def lost(round_type):
+    if round_type == 1:
+        print('You have lost in the round of 64')
+    elif round_type == 2:
+        print('You have lost in the round of 32')
+    elif round_type == 3:
+        print('You have lost in the Sweet 16')
+    elif round_type == 4:
+        print('You have lost in the Elite 8')
+    elif round_type == 5:
+        print('You have lost in the Final 4')
+    elif round_type == 6:
+        print('You have lost in the Championship')
+
+# Function to assign opposing team
+def opp_team():
+    print('Thank you, you will now be assigned an opposing team')
+
+try:
+    # User selects a team
+    team = str(input("Which of the following teams would you like to select to be your team for March Madness?: ")).capitalize()
+
+    if team in poss_teams:
+        print()
+        opp_team()
+        print()
+        rand_team = random.choice(team_to_choose)
+        print(rand_team)
+        print()
+    else:
+        print("Please enter a Team that is listed: ")
+        team = str(input())
+        print()
+        opp_team()
+        print()
+        rand_team = random.choice(team_to_choose)
+        print(rand_team)
+
+    team_score = random.randint(60, 100)
+    one_team_score = random.randint(50, 70)
+
+    if team_score > one_team_score:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + " - " + str(rand_team) + " " + str(one_team_score))
+        print('You have won, onto the round of 32 ')
+        rounds_left()
+        print()
+        team_to_choose.remove(rand_team)
+        win = 0
+    else:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + " - " + str(rand_team) + " " + str(one_team_score))
+        lost(1)
+        win = 1
+
+    # Round of 32
+    rand_team_2 = random.choice(team_to_choose)
+    continue_ = str(input('Would you like to continue?(Yes or No): '))
+    if continue_ in ['yes', 'ya', 'y', 'Yes', 'Ya', 'Y', 'yee', 'ye', 'Yee', 'Ye', 'duh', 'Duh', 'fs', 'Fs'] and win < 1:
+        print()
+        opp_team()
+        print()
+        print(rand_team_2)
+        print()
+        team_score = random.randint(60, 100)
+        two_team_score = random.randint(55, 75)
+        print()
+        if team_score > two_team_score:
+            print("The score in the game was: \n" + str(team) + " " + str(team_score) + " - " + str(rand_team_2) + " " + str(two_team_score))
+            print('You have won, onto the Sweet Sixteen ')
+            print()
+            win = 0
+            team_to_choose.remove(rand_team_2)
+        else:
+            print("The score in the game was: \n" + str(team) + " " + str(team_score) + " - " + str(rand_team_2) + " " + str(two_team_score))
+            lost(2)
+            win = 1
+except Exception as e:
+  print("An error occurred:", e)
+# Sweet Sixteen
+rand_team_3 = random.choice(team_to_choose)
+continue_2 = str(input('Would you like to continue?(Yes or No): '))
+if continue_2 in ['yes', 'ya', 'y', 'Yes', 'Ya', 'Y', 'yee', 'ye', 'Yee', 'Ye', 'duh', 'Duh', 'fs', 'Fs'] and win < 1:
+    print()
+    opp_team()
+    print()
+    print(rand_team_3)
+    print()
+    team_score = random.randint(60, 100)
+    three_team_score = random.randint(60, 80)
+    print()
+    if team_score > three_team_score:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_3) + " " + str(three_team_score))
+        print('You have won, onto the Elite Eight ')
+        print()
+        win = 0
+    else:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_3) + " " + str(three_team_score))
+        lost(3)
+        win = 1
+
+# Elite Eight
+rand_team_4 = random.choice(team_to_choose)
+continue_3 = str(input('Would you like to continue?(Yes or No): '))
+if continue_3 in ['yes', 'ya', 'y', 'Yes', 'Ya', 'Y', 'yee', 'ye', 'Yee', 'Ye', 'duh', 'Duh', 'fs', 'Fs'] and win < 1:
+    print()
+    opp_team()
+    print()
+    print(rand_team_4)
+    print()
+    team_score = random.randint(60, 100)
+    four_team_score = random.randint(60, 80)
+    print()
+    if team_score > four_team_score:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_4) + " " + str(four_team_score))
+        print('You have won, onto the Final Four')
+        print()
+        win = 0
+    else:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_4) + " " + str(four_team_score))
+        lost(4)
+        win = 1
+
+# Final Four
+continue_4 = str(input('Would you like to continue?(Yes or No): '))
+if continue_4 in ['yes', 'ya', 'y', 'Yes', 'Ya', 'Y', 'yee', 'ye', 'Yee', 'Ye', 'duh', 'Duh', 'fs', 'Fs'] and win < 1:
+    rand_team_5 = random.choice(team_to_choose)
+    print()
+    opp_team()
+    print()
+    print(rand_team_5)
+    print()
+    team_score = random.randint(60, 100)
+    five_team_score = random.randint(60, 90)
+    print()
+    if team_score > five_team_score:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_5) + " " + str(five_team_score))
+        print('On to the Championship!')
+        print()
+        win = 0
+    else:
+        print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_5) + " " + str(five_team_score))
+        lost(5)
+        win = 1
+
+# Championship
+if win == 0:
+    continue_5 = str(input('Would you like to continue?(Yes or No): '))
+    if continue_5 in ['yes', 'ya', 'y', 'Yes', 'Ya', 'Y', 'yee', 'ye', 'Yee', 'Ye', 'duh', 'Duh', 'fs', 'Fs']:
+        rand_team_6 = random.choice(team_to_choose)
+        print()
+        opp_team()
+        print()
+        print(rand_team_6)
+        print()
+        team_score = random.randint(60, 100)
+        six_team_score = random.randint(50, 90)
+        print()
+        if team_score > six_team_score:
+            print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_6) + " " + str(six_team_score))
+            print('You have won, you are Champs! ')
+            print()
+            win = 0
+        else:
+            print("The score in the game was: \n" + str(team) + " " + str(team_score) + "  - " + str(rand_team_6) + " " + str(six_team_score))
+            lost(6)
+            win = 1
